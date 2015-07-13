@@ -1,0 +1,20 @@
+[root]
+name = "bronkerbosch-rust"
+version = "0.1.0"
+dependencies = [
+ "petgraph 0.1.10 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "fixedbitset"
+version = "0.0.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+
+[[package]]
+name = "petgraph"
+version = "0.1.10"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+dependencies = [
+ "fixedbitset 0.0.5 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
