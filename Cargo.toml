@@ -1,0 +1,4 @@
+[package]
+name = "bronkerbosch-rust"
+version = "0.1.0"
+authors = ["Manuel Hoffmann <manuel@polythematik.de>"]
