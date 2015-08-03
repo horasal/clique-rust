@@ -1,0 +1,116 @@
+Algorithm
+=========
+
+
+fn output_maximal_complete_subgraphs_2(connected: bool[], N: i32) {
+
+	let ALL: i32[];
+	let compsub: [[i32; N]; N]; // compsub_1 : i32[], compsub_2 : i32[] ... compsub_N: i32[]
+	let c: i32;
+
+}
+
+
+fn extend_version_2(old: i32[], ne: i32, ce: i32) {
+
+	let new: [[i32; N]; ce]; // new_1 : i32[], new_2 : i32[] ... new_ce: i32[]
+	let nod: i32 = 0;
+	let fixp: i32;
+	let newne: i32;
+	let newce: i32;
+	let i: i32 = 0;
+	let j: i32;
+	let count: i32;
+	let pos: i32;
+	let p: i32;
+	let s : i32;
+	let sel: i32;
+	let minnod: i32 = ce;
+
+	// determine each counter value and look for minimum
+	for i = i+1 while i <= ce && minnod != 0 {
+
+		p = old[i];
+		count = 0;
+		j = ne;
+
+		// count disconnections
+		for j = j+1 while j <= ce && count < minnod {
+			if !connected[p, old[j]] {
+				count += 1;
+				// save position of potential candidate
+				pos = j;
+			}
+		}
+
+
+		// test new minimum
+		if count < minnod {
+			fixp = p;
+			minnod = count;
+			if i <= ne {
+				s = pos;
+            } else {
+				s = i;
+				nod = 1;
+            }
+        }
+    }
+
+	// backtrackcycle
+	for nod = minnod + nod step -1 until 1 {
+		// interchange
+		p = old[s];
+		old[s] = old[ne + 1];
+		sel = p;
+		old[ne + 1] = p;
+
+		// fill new set "not"
+		newne = i;
+		i = 0;
+		for i = i + 1 while i <= ne {
+			if connected[sel, old[i]] {
+				newne = newne + 1;
+				new[newne] = old[i];
+			}
+		}
+
+		// fill new set "cand"
+		newce = newne;
+		i = ne + 1;
+		for i = i + 1 while i <= ce {
+			if connected[sel, old[i]] {
+				newce = newce + 1;
+				new[newce] = old[i]
+			}
+		}
+
+		// add to "compsub"
+		c += 1;
+		compsub[c] := sel;
+
+		if newce == 0 {
+			let loc : i32;
+			print!("clique = ")
+			for loc = 1 step 1 until c do
+				print!(" {} ", compsub[loc])
+			end
+		} else {
+			if newne < newce then
+				extend_version_2(new, newne, newce);
+			// remove from "compsub"
+			c = c - 1;
+			// add to "not"
+			ne += 1;
+
+			if nod > i {
+				// select a candidate disconnected to the fixed point
+				s = ne;
+				s += 1;
+				if connected[fixp, old[s]] {
+					goto LOOK
+                }
+			}
+		}
+	}
+}
