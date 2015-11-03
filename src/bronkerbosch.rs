@@ -36,8 +36,11 @@ impl<N: NodeTrait,E> BronKerbosch<N,E> {
         let mut p_fp = p.clone();
         let mut x_fp = x.clone();
 
-        if p.is_empty() && x.is_empty() {
-            self.max_cliques.push(r.clone());
+        if p.is_empty() {
+            if x.is_empty() {
+                self.max_cliques.push(r.clone());
+            }
+            return;
         }
 
         for v in p.iter() {
