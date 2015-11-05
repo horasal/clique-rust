@@ -1,8 +1,16 @@
 [package]
-name = "bronkerbosch-rust"
+name = "clique-rust"
 version = "0.1.0"
 authors = ["Manuel Hoffmann <manuel@polythematik.de>"]
 
 
 [dependencies]
 petgraph = "*"
+
+[profile.dev]
+opt-level = 0
+debug = true
+rpath = false
+lto = false
+debug-assertions = true
+codegen-units = 1
