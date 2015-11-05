@@ -1,9 +1,9 @@
 use std::collections::HashSet;
-use graph_wrapper::GraphWrapper;
 use petgraph::graphmap::{GraphMap,NodeTrait};
 
-/// Implementation according to "Algorithm 457: Finding All Cliques of an Undirected Graph"
-/// by Bronand Kerbosch; http://doi.acm.org/10.1145/362342.362367
+/// Tomita, Etsuji, Akira Tanaka, and Haruhisa Takahashi. "The worst-case time complexity for
+/// generating all maximal cliques and computational experiments." Theoretical Computer Science
+/// 363.1 (2006): 28-42.
 ///
 /// connected is a symmetrical bolean matrix, N the number of nodes in the graph,
 /// values of the diagonal should be true.

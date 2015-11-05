@@ -1,5 +1,4 @@
 use std::collections::HashSet;
-use graph_wrapper::GraphWrapper;
 use petgraph::graphmap::{GraphMap,NodeTrait};
 
 /// Implementation according to "Algorithm 457: Finding All Cliques of an Undirected Graph"
