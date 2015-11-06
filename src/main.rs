@@ -4,13 +4,9 @@ extern crate petgraph;
 mod bronkerbosch;
 mod graph_wrapper;
 mod tomita;
-mod kplex;
-mod kcore;
 
 use bronkerbosch::BronKerbosch;
 use tomita::Tomita;
-use kplex::Kplex;
-use kcore::KCore;
 
 use petgraph::graphmap::{GraphMap};
 
@@ -45,7 +41,7 @@ pub fn load_from_file(filename: &str) -> GraphMap<i32, ()> {
 
 fn print_help() {
     println!("Clique Enumerator. Syntax:\n programname graph_file method \n 
-             mathed can be: \"BK\" , \"TOMITA\", \"kplex\".");
+             mathed can be: \"BK\" , \"TOMITA\".");
 }
 
 fn main() {
@@ -68,28 +64,6 @@ fn main() {
                 tomita.compute();
                 for c in tomita.cliques().iter() {
                     println!("{:?}", c);
-                }
-            }
-            "KPLEX" => {
-                if args.len() > 3 {
-                    let k = args[3].parse::<usize>().unwrap();
-                    println!("KPlex: ");
-                    let mut kplex = Kplex::new(graph, k);
-                    kplex.compute();
-                    for c in kplex.cliques().iter() {
-                        println!("{:?}", c);
-                    }
-                }
-            }
-            "KCORE" => {
-                if args.len() > 3 {
-                    let k = args[3].parse::<usize>().unwrap();
-                    println!("Kcore: ");
-                    let mut kcore = KCore::new(graph, k);
-                    kcore.compute();
-                    for c in kcore.cliques().iter() {
-                        println!("{:?}", c);
-                    }
                 }
             }
             _ => { print_help() }
